@@ -1,5 +1,3 @@
-from msilib.schema import Class
-
 
 class Employee:
     def __init__(self,fName, lName, empId, pay):
