@@ -36,9 +36,9 @@ emp_hours_worked = float(input("How many hours did " + fName + " work:  "))
 
 #this is the math for the pay
 if emp_hours_worked < 40:
-    total = emp_hours_worked * pay
+     total = emp_hours_worked * pay
 else:
-   total = (40 * pay) + (emp_hours_worked - 40) * (pay * .50)
+    total = (40 * pay) + (emp_hours_worked - 40) * (pay * 1.5)
 
 #stong and numbers can not concat so we have to trun the number to a string
 print(fName +" "+ lName + "'s paycheck amount is: $"+ str(total))
