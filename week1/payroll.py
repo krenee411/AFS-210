@@ -1,10 +1,11 @@
 
 class Employee:
-    def __init__(self,fName, lName, empId, pay):
+    def __init__(self,fName, lName, empId, empPay):
         self.fName= fName
         self.lName= lName
         self.empId= empId
-        self.pay = pay
+        self.empPay = empPay
+        # self.total = total
 
     def setfName(self,fName):
         self.fName = fName
@@ -21,24 +22,30 @@ class Employee:
     def getempId(self):
         return self.empId
 
-    def setPay(self, pay):
-            self.pay = pay
-    def getPay(self):
-        return self.pay
+    def setempPay(self, empPay):
+            self.empPay = empPay
+    def getempPay(self):
+        return self.empPay
 
+    # def setTotal(self, total):
+    #         self.total = total
+    # def getTotal(self):
+    #     return pay(self.total)
 
 
 empId = int(input("Please enter the employees ID number:  "))
 fName = input("Please enter the employees First Name:  ")
 lName = input("Please enter the employees Last Name:  ")
-pay = float(input("Please enter the employees hourly pay rate:  "))
+empPay = float(input("Please enter the employees hourly pay rate:  "))
 emp_hours_worked = float(input("How many hours did " + fName + " work:  "))
 
 #this is the math for the pay
-if emp_hours_worked < 40:
-     total = emp_hours_worked * pay
-else:
-    total = (40 * pay) + (emp_hours_worked - 40) * (pay * 1.5)
+def pay():
+    if emp_hours_worked <= 40:
+        print(fName +" "+ lName + "'s paycheck amount is: $"+ str(emp_hours_worked * empPay))
+    else:
+        print(fName +" "+ lName + "'s paycheck amount is: $" + str((40 * empPay) + (emp_hours_worked - 40) * (empPay * 1.5)))
 
+pay()
 #stong and numbers can not concat so we have to trun the number to a string
-print(fName +" "+ lName + "'s paycheck amount is: $"+ str(total))
+# print(fName +" "+ lName + "'s paycheck amount is: $" + str(pay()))
