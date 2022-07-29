@@ -22,30 +22,84 @@ class DoublyLinkedList:
             yield val
 
 
-    def size(self) -> int:
-        # Returns the number of elements in the list
+    def size(self):
         return self.count
 
 
-    def addFirst(self, data) -> None:
+    def addFirst(self, data):
         # Add a node at the front of the list
+        node = Node(data)
+        if self.head == None:
+            self.head = node
+        else:
+            self.head.prev = node
+            node.next = self.head
+            self.head = node
+        self.count += 1
        
 
-
-    def addLast(self, data) -> None:
+    def addLast(self, data):
         # Add a node at the end of the list
-  
+        node = Node(data)
+        if self.head == None:
+            self.head = node
+        else:
+            temp = self.head
+            while temp.next != None:
+                temp = temp.next
+            temp.next = node
+            node.prev = temp
+        self.count += 1
+
 
     def addAtIndex(self, data, index):
         # Add a node to the list at the given index position
         # If index equals to the length of linked list, the node will be appended to the end of linked list
         # If index is greater than the length, the data will not be inserted.
         # This function does not replace the data at the index, but pushes everything else down.
+        node = Node(data)
+        if index < 0:
+            print("you have entered an index that is out of range.")
+        elif index == 0:
+            self.next = self.head
+            self.head.prev = node
+            self.head = node
+            self.count += 1
+        else:
+            temp = self.head
+            for i in range(1, index-1):
+                if temp != None:
+                    temp = temp.next
+            if temp != None:
+                node.next = temp.next
+                node.prev = temp
+                temp.next = node
+                self.count += 1
+            else: 
+                print("The index give is out of range")
+           
+
 
 
     def indexOf(self, data):
         # Search through the list. Return the index position if data is found, otherwise return -1    
-
+        temp = self.head
+        found = 0
+        index = -1
+        if temp != None:
+            while temp != None:
+                index +=1 
+                if temp.data == data:
+                    found += 1 
+                    break
+                temp = temp.next
+            if found == 1:
+                print(index)
+            else:
+                print("Item not found")
+        else:
+            print("The list is currenly empty")
+            
 
 
     def add(self, data) -> None:
@@ -126,6 +180,23 @@ class DoublyLinkedList:
              myStr += str(node)+ " "
         return myStr
 
+words = DoublyLinkedList()
+words.addFirst("May")
+words.add("the")
+words.add("Force")
+words.add("be")
+words.add("with")
+words.add("you")
+words.addLast('!')
+print(words)
+words.indexOf("with")
+words.__setitem__(5,"us")
+words.addAtIndex("all",7)
+print(words)
+
+
+
+            
 
 
 
