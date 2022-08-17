@@ -1,14 +1,14 @@
 # random-shuffle
 from random import randint
 
-# now for some reason this does not always run as expected?? you can run it a few times and it works
-# but then it give me IndexError: list index out of range sometimes? Please Help
+# now for some reason this does not always run as expected all the time?? it works one time then not the next?
+# but it give me IndexError: list index out of range ----- Please Help
 
 
 def randomizer(myList,n):
     for i in range(0,n-1):
-        ran = randint(0 ,n)
-        if i != ran:
+        ran = randint(0 ,n-1)
+        while i != ran:
             myList[i], myList[ran] = myList[ran],myList[i]
             return randomizer(myList,n)
         return myList
@@ -19,6 +19,7 @@ print("Before Shuffle:")
 print(myList)
 print("After shuffle:")
 print(randomizer(myList,n))
+
 
 #line 8: myList is len(10) so we go from 0 to 10-1 because we do not want to use the same number twice
 #line 9: this is giving me a random number between 1-10 which is any number in my array
