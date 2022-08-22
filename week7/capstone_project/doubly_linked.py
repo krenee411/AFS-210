@@ -1,20 +1,19 @@
+from random import randint
+
+
 class Node:
-    # A doubly-linked node.
     def __init__(self, data=None):
         self.data = data
         self.next = None
         self.prev = None
 
 class DoublyLinkedList:
-    # A doubly-linked list.
     def __init__(self):
-        # Create an empty list.
         self.tail = None
         self.head = None
         self.count = 0
 
     def iter(self):
-        # Iterate through the list.
         current = self.head
         while current:
             val = current.data
@@ -25,9 +24,14 @@ class DoublyLinkedList:
     def size(self):
         return self.count
 
+    def first(self):
+        return self.head
+
+    def last(self):
+        return self.tail
+
 
     def addFirst(self, data):
-        # Add a node at the front of the list
         node = Node(data)
         if self.head == None:
             self.head = node
@@ -39,7 +43,6 @@ class DoublyLinkedList:
        
 
     def addLast(self, data):
-        # Add a node at the end of the list
         node = Node(data)
         if self.head == None:
             self.head = node
@@ -53,10 +56,6 @@ class DoublyLinkedList:
 
 
     def addAtIndex(self, data, index):
-        # Add a node to the list at the given index position
-        # If index equals to the length of linked list, the node will be appended to the end of linked list
-        # If index is greater than the length, the data will not be inserted.
-        # This function does not replace the data at the index, but pushes everything else down.
         node = Node(data)
         if index < 0:
             print("you have entered an index that is out of range.")
@@ -77,12 +76,8 @@ class DoublyLinkedList:
                 self.count += 1
             else: 
                 print("The index give is out of range")
-           
 
-
-
-    def indexOf(self, data):
-        # Search through the list. Return the index position if data is found, otherwise return -1    
+    def indexOf(self, data):   
         temp = self.head
         found = 0
         index = -1
@@ -103,18 +98,14 @@ class DoublyLinkedList:
 
 
     def add(self, data) -> None:
-        # Append an item to the end of the list
         self.addLast(data)
 
     def clear(self) -> None:
-        # Remove all of the items from the list
         self.head = None
         self.tail = None
         self.count = 0
 
     def deleteAtIndex(self, index) -> None:
-        # Delete the node at the index-th in the linked list, if the index is valid.
-
         if (index > (self.count-1)):
             return
             
@@ -139,7 +130,6 @@ class DoublyLinkedList:
         return
 
     def delete(self, data) -> None:
-        # Delete a node from the list who's value matches the supplied value
         current = self.head
         prev = self.head
         while current:
@@ -180,24 +170,17 @@ class DoublyLinkedList:
              myStr += str(node)+ " "
         return myStr
 
-words = DoublyLinkedList()
-words.addFirst("May")
-words.add("the")
-words.add("Force")
-words.add("be")
-words.add("with")
-words.add("you")
-words.addLast('!')
-print(words)
-words.indexOf("with")
-words.__setitem__(5,"us")
-words.addAtIndex("all",7)
-print(words)
-
-
-
-
-            
-
-
-
+    def shuffle(self):
+        if self.head == None:
+            return
+        else:
+            current = self.head
+            while current.next != None:
+                index= current.next
+                while index != None:
+                    if (randint(0,1) == 1):
+                        temp = current.data
+                        current.data = index.data
+                        index.data = temp
+                    index = index.next
+                current = current.next
