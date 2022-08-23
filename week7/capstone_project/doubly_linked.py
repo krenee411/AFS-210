@@ -83,13 +83,14 @@ class DoublyLinkedList:
         index = -1
         if temp != None:
             while temp != None:
+                # print(temp.data.getTitle(), data)
                 index +=1 
-                if temp.data == data:
+                if temp.data.getTitle() == data:
                     found += 1 
                     break
                 temp = temp.next
             if found == 1:
-                print(index)
+                return index
             else:
                 print("Item not found")
         else:

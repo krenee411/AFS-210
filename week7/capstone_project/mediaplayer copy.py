@@ -21,10 +21,10 @@ class Song:
         return self.artist
 
     def __str__(self):
-        return self.title + " by " + self.artist 
+        return self.title + " by " + self.artist + " | "
 
     def __eq__(self, other):
-        return ((self.title, self.artist) == (other.title, other.artist))
+        return ((self.title) == (other.title))
         
     def __ne__(self, other):
         return not (self == other)
@@ -46,8 +46,10 @@ class MediaPlayer:
         self.playlist.add(newSong)
         self.playlist.count += 1
 
-    def removeMusic(self):  #2
-        self.playlist.deleteAtIndex()
+    def removeMusic(self,index):  #2
+        # print(index,"index at 50")
+        self.playlist.deleteAtIndex(index)
+
 
     def playMusic(self, song=None): #3
         if song:
@@ -77,9 +79,10 @@ class MediaPlayer:
         else:
             print("No songs are playing")
 
-    def getAll(self): #8
-        for i in self.playlist:
-            print(i)
+
+    # def getAll(self): #8
+    #     for i in self.playlist:
+    #         print(i)
         
 
 myMusic = MediaPlayer()
@@ -118,9 +121,10 @@ while True:
     elif choice == 2:
         # Prompt user for Song Title
         print("\nSong list:\n")
-        print(myMusic.playlist.getTitle())
+        print(myMusic.playlist)
         removeTitle = input("Please enter the title of the song you would like to delete: ")
-        remove = myMusic.playlist.indexOf("{removeTitle}")
+        remove = myMusic.playlist.indexOf(removeTitle)
+        print(remove, "remove at 127")
         myMusic.removeMusic(remove)
 
          # remove song from playlist
@@ -144,7 +148,7 @@ while True:
         # Display song name that is now playing
         print("Shuffling....") 
         myMusic.shuffleMusic() 
-        print(myMusic.playlist)  
+        # print(myMusic.playlist)  
     elif choice == 7:
         # Display the song name and artist of the currently playing song
         print("Currently playing: ", end=" ") 
@@ -152,8 +156,8 @@ while True:
     elif choice == 8:
         # Show the current song list order
         print("\nSong list:\n")
-        # print(myMusic.playlist)
-        myMusic.getAll()
+        print(myMusic.playlist)
+        #myMusic.getAll()
         
         
     elif choice == 0:
