@@ -72,6 +72,7 @@ class MediaPlayer:
 
     def shuffleMusic(self): #6
         self.playlist.shuffle()
+        print(self.playlist)
 
     def whatsPlaying(self): #7
         if self.currentlyPlaying:
