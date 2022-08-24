@@ -107,7 +107,7 @@ def partition(a_list, start, end):
         else:
             break
 
-    a_list[mid], a_list[high] = a_list[high], a_list[mid]
+    a_list[start], a_list[high] = a_list[high], a_list[start]
 
     return high
 
@@ -163,7 +163,7 @@ def partition(a_list, start, end):
         else:
             break
 
-    a_list[end], a_list[low] = a_list[low], a_list[end]
+    a_list[start], a_list[high] = a_list[high], a_list[start]
 
     return high
 
@@ -219,7 +219,7 @@ def partition(a_list, start, end):
         else:
             break
 
-    a_list[end], a_list[low] = a_list[low], a_list[end]
+    a_list[start], a_list[high] = a_list[high], a_list[start]
 
     return high
 
